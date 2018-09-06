@@ -1,22 +1,22 @@
 import React from 'react'
-import { render } from 'react-dom'
+import ReactDOM from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import { ConnectedRouter } from 'connected-react-router'
-import store, { history } from './store'
-import App from './containers/app'
+import store from './store'
+import App from './App'
 
 import 'sanitize.css/sanitize.css'
 import './index.css'
 
-const target = document.querySelector('#root')
-
-render(
+ReactDOM.render(
   <Provider store={store}>
-    <ConnectedRouter history={history}>
+    <BrowserRouter>
       <div>
         <App />
       </div>
-    </ConnectedRouter>
-  </Provider>,
-  target
-)
+    </BrowserRouter>
+  </Provider>
+,
+
+document.getElementById('root'));
+
