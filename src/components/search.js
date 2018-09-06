@@ -7,12 +7,15 @@ class DefaultSearch extends React.Component {
   render () {
     let searchResults;
     if (this.props.results) {
-      searchResults = this.props.results.map((spell, index) => 
-        <div key={index}>
-        <a href = {spell.url}>{spell.name}</a>
+      searchResults = (
+        <div>
+        <p>{this.props.results.name}</p>
+        <p>{this.props.results.desc}</p>
+        <p>{this.props.results.range}</p>
+        <p>{this.props.results.material}</p>
+        <p>{this.props.results.level}</p>
         </div>
       )
-    
     }
   
   return (

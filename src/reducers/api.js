@@ -1,7 +1,7 @@
 import {GET_API_SUCCESS} from '../actions/apiActions'
 
 const initialState = {
-  results: []
+  results: null
 };
 
 export const apiReducer = (state = initialState, action) => {
@@ -9,7 +9,7 @@ export const apiReducer = (state = initialState, action) => {
     case GET_API_SUCCESS:
       return {
         ...state,
-        results: [...action.data]
+        results: action.data
       }
     default: return state;
   }

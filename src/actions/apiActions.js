@@ -7,11 +7,14 @@ export const getAPISuccess = data => ({
 
 export const getResultsFromAPI = () => (dispatch) => {
 
-  return fetch('http://www.dnd5eapi.co/api/spells', {
+  return fetch('http://www.dnd5eapi.co/api/spells/1', {
     method: 'GET',
+    headers: {
+        'Content-Type': 'application/json'
+    }
   })
     .then(res => res.json())
-    .then((data) => dispatch(getAPISuccess(data.results)))
+    .then((data) => dispatch(getAPISuccess(data)))
     .catch((err) => {
     //   dispatch(getExercisesError(err))
     });
