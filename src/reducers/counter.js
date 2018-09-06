@@ -1,7 +1,7 @@
 export const INCREMENT_REQUESTED = 'counter/INCREMENT_REQUESTED'
 
 const initialState = {
-  count: 0,
+  results: 0,
 }
 
 export default (state = initialState, action) => {
@@ -9,7 +9,7 @@ export default (state = initialState, action) => {
     case INCREMENT_REQUESTED:
       return {
         ...state,
-        isIncrementing: true
+        // isIncrementing: true
       }
 
     default:
@@ -21,10 +21,6 @@ export const increment = () => {
   return dispatch => {
     dispatch({
       type: INCREMENT_REQUESTED
-    })
-
-    dispatch({
-      type: INCREMENT
     })
   }
 }
