@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import DefaultSearch from './components/search'
+import Card from './components/card'
 
 class App extends Component {
 
@@ -8,6 +9,7 @@ class App extends Component {
     return (
       <div>
         <Route exact path='/' component={DefaultSearch} />
+        <Route path="/card/:id" component={Card} />
       </div>
     );
   }

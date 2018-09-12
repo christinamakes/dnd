@@ -1,21 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {getResultsFromAPI} from '../actions/apiActions'
-import { Link } from "react-router-dom"
 
-class DefaultSearch extends React.Component {
+class Card extends React.Component {
 
   render () {
     let searchResults;
     if (this.props.results) {
       searchResults = (
         <div>
-        <p>{this.props.results.name}</p>
-        <p>{this.props.results.desc}</p>
-        <p>{this.props.results.range}</p>
-        <p>{this.props.results.material}</p>
-        <p>{this.props.results.level}</p>
-        <Link to={`/card/${this.props.results.name}`}>Go to {this.props.results.name}</Link>
+        <p>This is the card for {this.props.results.name}</p>
         </div>
       )
     }
@@ -38,4 +32,4 @@ const mapStateToProps = (state) => ({
   results: state.api.results
 })
 
-export default connect(mapStateToProps)(DefaultSearch)
+export default connect(mapStateToProps)(Card)
