@@ -8,16 +8,12 @@ class DefaultSearch extends React.Component {
   render () {
     let searchResults;
     if (this.props.results) {
-      searchResults = (
-        <div>
-        <p>{this.props.results.name}</p>
-        <p>{this.props.results.desc}</p>
-        <p>{this.props.results.range}</p>
-        <p>{this.props.results.material}</p>
-        <p>{this.props.results.level}</p>
-        <Link to={`/card/${this.props.results.name}`}>Go to {this.props.results.name}</Link>
+      searchResults = this.props.results.map((result, index) => 
+        <div key={index}>
+        <Link to={{ pathname: `/card/${result.name}`, state: { url: `${result.url}`} }}>{result.name}</Link>
         </div>
       )
+    
     }
   
   return (

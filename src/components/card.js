@@ -1,35 +1,28 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {getResultsFromAPI} from '../actions/apiActions'
+import {getResultsFromURL} from '../actions/apiActions'
 
 class Card extends React.Component {
 
+     componentDidMount() {
+         this.props.dispatch(getResultsFromURL(`${this.props.location.state.url}`))
+     }
+
   render () {
-    let searchResults;
-    if (this.props.results) {
-      searchResults = (
-        <div>
-        <p>This is the card for {this.props.results.name}</p>
-        </div>
-      )
-    }
+   
   
   return (
     <div>
-    <h1>Home</h1>
-    <p>Results: {searchResults}</p>
+    <h1>{this.props.card.name}</h1>
+    <p>{this.props.card.desc}</p>
 
-    <p>
-      <button onClick={() => this.props.dispatch(getResultsFromAPI())}>
-        Get spells
-      </button>
-    </p>
   </div>
   )}
 }
 
 const mapStateToProps = (state) => ({
-  results: state.api.results
+  results: state.api.results,
+  card: state.api.URLresults ? state.api.URLresults : []
 })
 
 export default connect(mapStateToProps)(Card)
