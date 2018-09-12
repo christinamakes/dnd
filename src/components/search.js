@@ -10,7 +10,7 @@ class DefaultSearch extends React.Component {
     if (this.props.results) {
       searchResults = this.props.results.map((result, index) => 
         <div key={index}>
-        <Link to={{ pathname: `/card/${result.name}`, state: { url: `${result.url}`} }}>{result.name}</Link>
+          <Link to={{ pathname: `/card/${result.name}`, state: { url: `${result.url}`} }}>{result.name}</Link>
         </div>
       )
     
@@ -19,7 +19,7 @@ class DefaultSearch extends React.Component {
   return (
     <div>
     <h1>Home</h1>
-    <p>Results: {searchResults}</p>
+    {searchResults}
 
     <p>
       <button onClick={() => this.props.dispatch(getResultsFromAPI())}>
