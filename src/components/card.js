@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {getResultsFromURL} from '../actions/apiActions'
+import { Link } from "react-router-dom"
 
 class Card extends React.Component {
 
@@ -14,15 +15,15 @@ class Card extends React.Component {
          
          if (this.props.card.classes) {
            classes_destruc = this.props.card.classes.map((result, index) => 
-           <div key={index}>
-             <p>{result.name}</p>
-           </div>
+             <p key={index}>{result.name}</p>
+            //  <Link to={{ pathname: `/card/${result.name}`, state: { url: `${result.url}`} }}>{result.name}</Link>
          )
        
        }
 
     return (
     <div>
+        <Link to={`/`}>Home</Link>
         <h1>{name} Level {level}</h1>
         <p>Page: {page}</p>
         <p>Description: {desc}</p>

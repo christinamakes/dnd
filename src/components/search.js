@@ -18,7 +18,8 @@ class DefaultSearch extends React.Component {
   
   return (
     <div>
-    <h1>Home</h1>
+    <Link to={`/`}>Home</Link>
+    <Link to={`/generate`}>Generate Magic Item</Link>
     {searchResults}
 
     <p>
