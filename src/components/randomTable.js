@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import {getResultsFromURL} from '../actions/apiActions'
 import { Link } from "react-router-dom"
 
-class makeItem extends React.Component {
+class randomTable extends React.Component {
 
      render () {  
          
@@ -10,7 +11,7 @@ class makeItem extends React.Component {
     return (
     <div>
         <Link to={`/`}>Home</Link>
-        <p>Generate an item</p>
+        <p>Random Table</p>
     </div>
   )}
 }
@@ -19,4 +20,4 @@ const mapStateToProps = (state) => ({
 
 })
 
-export default connect(mapStateToProps)(makeItem)
+export default connect(mapStateToProps)(randomTable)
