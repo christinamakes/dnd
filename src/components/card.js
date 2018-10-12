@@ -23,7 +23,6 @@ class Card extends React.Component {
 
     return (
     <div>
-        <Link to={`/`}>Home</Link>
         <h1>{name} Level {level}</h1>
         <p>Page: {page}</p>
         <p>Description: {desc}</p>
