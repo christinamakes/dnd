@@ -8,26 +8,37 @@ class Battle extends Component {
   constructor() {
     super();
     this.state = {
-      data: [{ firstName: "Christina", lastName: "Moore" }, { firstName: "Dylan", lastName: "Wagner" }],
+      data: [],
       firstName: "",
-      lastName: ""
+      notes: "",
+      hp: null,
+      init: null
     };
   }
   handleChange = event => {
     if (event.target.name === "firstName")
       this.setState({ firstName: event.target.value });
-      console.log(this.state.firstName)
-    if (event.target.name === "lastName")
-      this.setState({ lastName: event.target.value });
+    if (event.target.name === "init")
+      this.setState({ init: event.target.value });
+    if (event.target.name === "notes")
+      this.setState({ notes: event.target.value });
+    if (event.target.name === "hp")
+      this.setState({ hp: event.target.value });
   };
-//   handleSubmit = event => {
-//     event.preventDefault();
-//   };
+
     handleSubmit = event => {
-    // this.setState({data: { firstName: "", lastName: "" }});
-    this.setState({data: [...this.state.data, { firstName: this.state.firstName, lastName: this.state.lastName }]});
-    console.log('done');
+    this.setState({data: 
+        [...this.state.data, 
+            { firstName: this.state.firstName,  
+                init: this.state.init,
+                hp: this.state.hp
+            }
+        ]
+        });
     event.preventDefault();
+    this.setState({firstName: ""});
+    this.setState({init: ""});
+    this.setState({hp: ""})
     };
 
   renderEditable = cellInfo => {
@@ -52,13 +63,13 @@ class Battle extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Dylan's DM Battle Coordinator</h1>
         </header>
         <p className="App-intro">
           <form onSubmit={this.handleSubmit}>
-            <h3>Add new record</h3>
+            <h3>Add fighter</h3>
             <label>
-              First Name:
+              Name:
               <input
                 type="text"
                 name="firstName"
@@ -67,14 +78,23 @@ class Battle extends Component {
               />
             </label>{" "}
             <label>
-              Last Name:
+              Initiative:
               <input
-                type="text"
-                name="lastName"
-                value={this.state.lastName}
+                type="number"
+                name="init"
+                value={this.state.init}
+                onChange={this.handleChange}
+                />
+            </label>{" "}
+            <label>
+                HP?:
+              <input
+                type="number"
+                name="hp"
+                value={this.state.hp}
                 onChange={this.handleChange}
               />
-            </label> 
+              </label>{" "}
             <input type="submit" value="Add" />
           </form>
         </p>
@@ -88,27 +108,35 @@ class Battle extends Component {
                 Cell: this.renderEditable
               },
               {
-                Header: "Last Name",
-                accessor: "lastName",
-                Cell: this.renderEditable
-              },
-              {
                 Header: "Hit Points",
                 accessor: "hp",
                 Cell: this.renderEditable
               },
               {
-                Header: "Full Name",
-                id: "full",
-                accessor: d => (
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: d.firstName + " " + d.lastName
-                    }}
-                  />
-                )
+                Header: "Initiative",
+                id: 'init',
+                accessor: d=>Number(d.init),
+                Cell: this.renderEditable,
+              },
+              {
+                Header: "Notes",
+                id: "notes",
+                Cell: this.renderEditable
+                // accessor: d => (
+                //   <div
+                //     dangerouslySetInnerHTML={{
+                //       __html: d.firstName + " " + d.lastName
+                //     }}
+                //   />
+                // )
               }
             ]}
+            defaultSorted={[
+                {
+                  id: "init",
+                  desc: false
+                }
+              ]}
             defaultPageSize={10}
             className="-striped -highlight"
           />
