@@ -25,7 +25,7 @@ class Battle extends Component {
 //   };
     handleSubmit = event => {
     // this.setState({data: { firstName: "", lastName: "" }});
-    this.setState({ firstName: "", lastName: "" });
+    this.setState({data: [...this.state.data, { firstName: this.state.firstName, lastName: this.state.lastName }]});
     console.log('done');
     event.preventDefault();
     };
@@ -55,7 +55,7 @@ class Battle extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
-          <form onSubmit={() => this.handleSubmit}>
+          <form onSubmit={this.handleSubmit}>
             <h3>Add new record</h3>
             <label>
               First Name:
