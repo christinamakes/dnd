@@ -3,6 +3,7 @@ import React, { Component } from "react";
 // Import React Table
 import ReactTable from "react-table";
 import "react-table/react-table.css";
+import { Link } from "react-router-dom"
 
 class Battle extends Component {
   constructor() {
@@ -12,7 +13,8 @@ class Battle extends Component {
       firstName: "",
       notes: "",
       hp: null,
-      init: null
+      init: null,
+      con: ""
     };
   }
   handleChange = event => {
@@ -22,6 +24,8 @@ class Battle extends Component {
       this.setState({ init: event.target.value });
     if (event.target.name === "notes")
       this.setState({ notes: event.target.value });
+    if (event.target.name === "hp")
+      this.setState({ hp: event.target.value });
     if (event.target.name === "hp")
       this.setState({ hp: event.target.value });
   };
@@ -61,6 +65,13 @@ class Battle extends Component {
   render() {
     const { data } = this.state;
     return (
+    <div>
+        <div>
+        <Link to={`/`}>Home</Link>
+        <Link to={`/generate`}>Generate Magic Item</Link>
+        <Link to={`/random`}>Generate Random Table</Link>  
+        <Link to={`/battle`}>Battle Table</Link>  
+        </div>
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Dylan's DM Battle Coordinator</h1>
@@ -119,6 +130,11 @@ class Battle extends Component {
                 Cell: this.renderEditable,
               },
               {
+                Header: "Concentration?",
+                accessor:'con',
+                Cell: this.renderEditable,
+              },
+              {
                 Header: "Notes",
                 id: "notes",
                 Cell: this.renderEditable
@@ -141,6 +157,7 @@ class Battle extends Component {
             className="-striped -highlight"
           />
         </div>
+      </div>
       </div>
     );
   }

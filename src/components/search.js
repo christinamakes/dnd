@@ -20,7 +20,8 @@ class DefaultSearch extends React.Component {
     <div>
     <Link to={`/`}>Home</Link>
     <Link to={`/generate`}>Generate Magic Item</Link>
-    <Link to={`/random`}>Generate Random Table</Link>    
+    <Link to={`/random`}>Generate Random Table</Link>  
+    <Link to={`/battle`}>Battle Table</Link>    
     {searchResults}
 
     <p>
