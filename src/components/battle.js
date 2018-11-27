@@ -35,7 +35,7 @@ class Battle extends Component {
         [...this.state.data, 
             { firstName: this.state.firstName,  
                 init: this.state.init,
-                hp: this.state.hp
+                hp: this.state.hp,
             }
         ]
         });
@@ -114,15 +114,42 @@ class Battle extends Component {
             data={data}
             columns={[
               {
-                Header: "First Name",
+                Header: "Name",
                 accessor: "firstName",
                 Cell: this.renderEditable
               },
               {
-                Header: "Hit Points",
-                accessor: "hp",
-                Cell: this.renderEditable
-              },
+                Header: "Health",
+                columns: [{
+                  Header: 'Hit Points',
+                  accessor: 'hp',
+                  Cell: this.renderEditable
+                },
+                {
+                  Header: "Health Bar",
+                  id: "healthBar",
+                  Cell: ({ row, original }) => (
+                    <div
+                      style={{
+                        width: `100%`,
+                        height: '100%',
+                        backgroundColor: '#dadada',
+                        borderRadius: '2px',
+                      }}
+                    >
+                    <div
+                      style={{
+                        width: `${original.hp}%`,
+                        height: '100%',
+                        backgroundColor: 'black',
+                          borderRadius: '2px',
+                          transition: 'all .2s ease-out'
+                      }}
+                    />
+                    </div>
+                  )
+                },
+            ]},
               {
                 Header: "Initiative",
                 id: 'init',
@@ -134,6 +161,21 @@ class Battle extends Component {
                 accessor:'con',
                 Cell: this.renderEditable,
               },
+            //   {
+            //     Header: "Concentration?",
+            //     id: "checkbox",
+            //     accessor: "con2",
+            //     Cell: ({ original }) => {
+            //         return (
+            //             <input
+            //                 type="checkbox"
+            //                 className="checkbox"
+            //                 // checked={this.state.selected[original.firstName] === true}
+            //                 onChange={() => this.toggleRow(original.firstName)}
+            //             />
+            //         );
+            //     },
+            // },
               {
                 Header: "Notes",
                 id: "notes",
@@ -145,7 +187,7 @@ class Battle extends Component {
                 //     }}
                 //   />
                 // )
-              }
+              },
             ]}
             defaultSorted={[
                 {
